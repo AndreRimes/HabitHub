@@ -1,0 +1,29 @@
+ .authMethods {
+     width: 30%;
+     height: 100%;
+     border: 1.5px solid gray;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: space-evenly;
+     transition: all 0.3s ease-out;
+     cursor: pointer;
+ }
+
+ .authMethods:hover {
+     border-color: #fb7bc3;
+     box-shadow: 2px 10px 14px -4px rgba(0, 0, 0, 0.75);
+     color: #fb7bc3;
+ }
+
+ .authMethods:hover .icon {
+     fill: #fb7bc3;
+ }
+
+ .icon {
+     transition: all 0.3s ease-out;
+ }
+
+ .icon:hover {
+     fill: #fb7bc3;
+ }
