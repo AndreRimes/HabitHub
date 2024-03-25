@@ -3,20 +3,23 @@ package main
 import (
 	"database/sql"
 	"habithub/api"
-    "log"
+	"habithub/util"
+	"log"
 
-    _ "github.com/lib/pq"
+	_ "github.com/lib/pq"
 )
 
 
-const (
-    DB_DRIVER = "postgres"
-    DB_SOURCE = "postgresql://root:secret@localhost:5433/HabitHub?sslmode=disable"
-)
 
 func main() {
+    config, err := util.LoadConfig(".")
 
-    conn, err := sql.Open(DB_DRIVER, DB_SOURCE)
+    if err != nil {
+        log.Fatal("ERROR GETTING ENV")
+        return
+    }
+
+    conn, err := sql.Open(config.DB_DRIVER, config.DB_SOURCE)
 
     if err != nil {
         log.Fatal("Error Connecting to the Database", err)
