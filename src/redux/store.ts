@@ -3,6 +3,7 @@ import userReducer from "./features/user-slice";
 import todosReducer from "./features/todo-slice"
 import calendarReducer from "./features/calendar-slice"
 import displayDayReducer from "./features/displayDay-slice"
+import habitsReducer from "./features/habit-slice"
 import { TypedUseSelectorHook, useSelector } from "react-redux";
 
 export const store = configureStore({
@@ -10,7 +11,8 @@ export const store = configureStore({
         userReducer,
         todosReducer,
         calendarReducer,
-        displayDayReducer
+        displayDayReducer,
+        habitsReducer,
     }
 })
 

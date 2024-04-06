@@ -7,7 +7,6 @@ INSERT INTO event (
 )
 RETURNING *;
 
-
 -- name: ListEventByUser :many
 SELECT * FROM event
 WHERE user_id= $1

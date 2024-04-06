@@ -8,7 +8,7 @@ import { AppDispathc } from "@/redux/store";
 import { login } from "@/redux/features/user-slice";
 import { setTodos } from "@/redux/features/todo-slice";
 import { setCalendar } from "@/redux/features/calendar-slice";
-import { setDisplayDay } from "@/redux/features/displayDay-slice";
+import { setDisplayDay, setToday } from "@/redux/features/displayDay-slice";
 import Todos from "@/components/todo/Todos";
 import Events from "@/components/event/Event";
 import DisplayDay from "@/components/displayDay/DisplayDay";
@@ -35,6 +35,7 @@ export default function DashBoardLayout({ children }: prop) {
                 dispatch(setTodos(response.data.todos));
                 dispatch(setCalendar(response.data.calendar));
                 dispatch(setDisplayDay(response.data.today));
+                dispatch(setToday(response.data.today));
             } catch (error) {
                 console.error("Error:", error);
             }

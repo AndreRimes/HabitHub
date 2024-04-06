@@ -33,6 +33,17 @@ export interface Day {
     events: EventType[];
     isToday: boolean;
     isNotInMonth: boolean;
+    habits: any;
+}
+
+export interface Habit {
+    id: number;
+    title: string;
+    streak: number;
+    week_days: string;
+    user_id: number;
+    createdAt: Date;
+    updatedAt: Date;
 }
 
 

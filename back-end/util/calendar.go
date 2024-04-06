@@ -14,6 +14,7 @@ type Day struct {
 	Events       []db.Event `json:"events"`
 	IsToday      bool       `json:"isToday"`
 	IsNotInMonth bool       `json:"isNotInMonth"`
+    Habits map[string]struct{} `json:"habits"`
 }
 
 func GenerateCalendar(year int, month time.Month) []Day {
@@ -50,6 +51,7 @@ func GenerateCalendar(year int, month time.Month) []Day {
 		day := Day{
 			Date:         current.Format("2006-01-02"),
 			DayOfTheWeek: dic[int(current.Weekday())],
+            Habits: map[string]struct{}{},
 		}
 
 		if current.Month() != month {
@@ -107,7 +109,6 @@ func AddOneEvent(event db.Event, calendar []Day) []Day {
 	case "Weekly":
 		weekDays := strings.Split(event.FrequencyExtension, "-")
 		for i, day := range calendar {
-
 			for _, weekDay := range weekDays {
 				if weekDay == day.DayOfTheWeek {
 					calendar[i].Events = append(calendar[i].Events, event)
@@ -115,6 +116,18 @@ func AddOneEvent(event db.Event, calendar []Day) []Day {
 			}
 		}
 	}
+    return calendar
+}
+
+func AddCompletedDays(completedDays []db.DayCompleted, HabitTitle string, calendar []Day) []Day{
+    for i, day := range calendar{
+        for _, completedDay := range completedDays{
+            if completedDay.Date == day.Date{
+                calendar[i].Habits[HabitTitle] = struct{}{}
+                break
+            }
+        }
+    }
     return calendar
 }
 

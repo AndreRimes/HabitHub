@@ -1,12 +1,15 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { EventType, Day } from "@/types/models";
+import axios from "axios";
 
 interface CalendarState {
     value: Day[];
+    offset: number
 }
 
 const initialState: CalendarState = {
-    value: []
+    value: [],
+    offset: 0
 };
 
 export const calendarSlice = createSlice({
@@ -18,7 +21,6 @@ export const calendarSlice = createSlice({
         },
         addEvent: (state, action: PayloadAction<EventType>) => {
             const event = action.payload;
-            console.log(event)
             const updatedCalendar = state.value.map(day => {
                 switch (event.frequency) {
                     case "Single":
@@ -68,9 +70,18 @@ export const calendarSlice = createSlice({
 
             state.value = updatedCalendar;
         },
+        fowardCalendar: (state, action: PayloadAction<Day[]>) => {
+            state.offset += 1
+            state.value = action.payload
+        },
+        backwardCalendar: (state, action: PayloadAction<Day[]>) => {
+            state.offset -=1
+            state.value = action.payload
+        },
     },
 });
 
-export const { setCalendar, addEvent } = calendarSlice.actions;
+
+export const { setCalendar, addEvent, fowardCalendar, backwardCalendar } = calendarSlice.actions;
 
 export default calendarSlice.reducer;

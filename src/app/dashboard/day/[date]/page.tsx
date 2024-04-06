@@ -22,7 +22,7 @@ export default function DayPage({ }) {
 
 
     useEffect(() => {
-        dispatch(setDisplayDay(BinarySearch(params.date, calendar)));
+        dispatch(setDisplayDay(calendar[BinarySearch(params.date, calendar)]));
     }, [calendar, params.date]);
 
 
@@ -62,7 +62,7 @@ export default function DayPage({ }) {
     }
 
     function calculateWidth(length: number) {
-        return `${(100 / length)-10}%`
+        return `${(100 / length) - 10}%`
     }
 
 

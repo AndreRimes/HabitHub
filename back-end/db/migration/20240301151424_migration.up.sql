@@ -1,11 +1,12 @@
 CREATE TABLE "day_completed" (
     "id" bigserial NOT NULL,
     "habit_id" BIGINT NOT NULL,
-    "day" VARCHAR(255) NOT NULL ,
+    "date" VARCHAR(255) NOT NULL ,
     "created_at" TIMESTAMP(0) WITH TIME zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
     "updated_at" TIMESTAMP(0) WITH TIME zone DEFAULT CURRENT_TIMESTAMP NOT NULL
 );
-ALTER TABLE "day_completed" ADD PRIMARY KEY("id");
+ALTER TABLE "day_completed" ADD CONSTRAINT pk_day_completed PRIMARY KEY ("habit_id", "date");
+
 
 CREATE TABLE "todo" (
     "id" bigserial NOT NULL,
@@ -38,7 +39,7 @@ ON COLUMN
 CREATE TABLE "habit" (
     "id" bigserial NOT NULL,
     "title" VARCHAR(255) NOT NULL,
-    "streak" BIGINT NOT NULL,
+    "streak" BIGINT NOT NULL DEFAULT 0,
     "week_days" VARCHAR(255) NOT NULL,
     "user_id" BIGINT NOT NULL,
     "created_at" TIMESTAMP(0) WITH TIME zone DEFAULT CURRENT_TIMESTAMP,

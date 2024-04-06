@@ -120,7 +120,6 @@ func (server *Server) getUser(ctx *gin.Context){
         return
     }
 
-
     todos, err := server.store.Queries.ListTodoByUser(ctx, user.ID)
 
     if err != nil {
@@ -141,7 +140,6 @@ func (server *Server) getUser(ctx *gin.Context){
     }
 
     currentTime := time.Now()
-
     currentMonth := currentTime.Month()
     currentYear := currentTime.Year()
 
@@ -155,13 +153,31 @@ func (server *Server) getUser(ctx *gin.Context){
     }
 
     calendar = util.AddEventToCalendar(events, calendar)
-
-
     today, err := util.FindToday(calendar)
 
     if err != nil{
         ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Today not found"})
         return
+    }
+
+
+    habits, err := server.store.Queries.ListHabits(ctx, user.ID)
+
+    if err != nil {
+        ctx.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+        return
+    }
+
+    for _, habit := range habits {
+        completedDays ,err := server.store.Queries.ListCompletedDays(ctx, habit.ID)
+
+        if err != nil {
+            ctx.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+            return
+        }
+    
+
+        calendar = util.AddCompletedDays(completedDays, habit.Title, calendar)
     }
 
     res.Today = today 

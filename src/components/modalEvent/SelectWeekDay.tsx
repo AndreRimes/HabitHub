@@ -22,10 +22,10 @@ const SelectWeekDay = ({ setFrequencyExtension }: { setFrequencyExtension: React
     };
 
     return (
-        <div className="grid grid-flow-row grid-cols-4 gap-2 z-20">
+        <div className="grid grid-flow-row grid-cols-3 gap-y-3 gap-x-3 z-20">
             {days.map((day, index) => (
-                <React.Fragment key={index}>
-                    <label htmlFor={day.toLowerCase()}>{day}</label>
+                <div  className="flex flex-row items-center justify-around" key={index}>
+                    <label htmlFor={day.toLowerCase()}>{day}.</label>
                     <input
                         type="checkbox"
                         id={day.toLowerCase()}
@@ -34,9 +34,9 @@ const SelectWeekDay = ({ setFrequencyExtension }: { setFrequencyExtension: React
                         checked={weekDays[index]}
                         onChange={() => handleCheckboxChange(index)}
                     />
-                </React.Fragment>
+                </div>
             ))}
-        </div>
+        </div >
     );
 };
 

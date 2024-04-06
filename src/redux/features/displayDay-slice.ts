@@ -5,7 +5,8 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 export const displayDay = createSlice({
     name: 'displayDay',
     initialState: {
-        value: {} as Day
+        value: {} as Day,
+        today: {} as Day,
     },
     reducers: {
         setDisplayDay: (state, action: PayloadAction<Day>) => {
@@ -39,17 +40,14 @@ export const displayDay = createSlice({
                 }
             }
         },
-        setToday: (state, action: PayloadAction<Day[]>) => {
-            const today = new Date();
-            const year = today.getFullYear();
-            const month = String(today.getMonth() + 1).padStart(2, '0'); 
-            const day = String(today.getDate()).padStart(2, '0');
-            const formattedDate = `${year}-${month}-${day}`;
-
-            state.value = BinarySearch(formattedDate, action.payload);
+        setToday: (state, action: PayloadAction<Day>) => {
+            state.today = action.payload
+        },
+        displayToday: (state, action) => {
+            state.value = state.today
         }
     },
 })
 
-export const { setDisplayDay, addEventToDate, setToday  } = displayDay.actions;
+export const { setDisplayDay, addEventToDate, setToday, displayToday } = displayDay.actions;
 export default displayDay.reducer;

@@ -31,6 +31,8 @@ func NewServer(DB *sql.DB) *Server{
     
     // Get Routes
     authRoutes.GET("/us", server.getUser) 
+    authRoutes.GET("/calendar/:id", server.getCalendar)
+    authRoutes.GET("/habit", server.getHabits)
 
     //Auth
     //router.GET("/auth/:provider/callback", server.getAuthCallBackFunction)
@@ -40,12 +42,15 @@ func NewServer(DB *sql.DB) *Server{
     // Create Routes
     authRoutes.POST("/event", server.createEvent)
     authRoutes.POST("/todo", server.createTodo)
+    authRoutes.POST("/habit", server.createHabit)
+    authRoutes.POST("/complete-day", server.completeDay)
 
     // Update Routes
     authRoutes.PATCH("/todo/:id", server.toggleTodo)
 
     // Delete Routes
     authRoutes.DELETE("todo/:id", server.deleteTodo)
+    authRoutes.DELETE("/complete-day", server.deleteCompleted_day)
 
 
     server.router = router

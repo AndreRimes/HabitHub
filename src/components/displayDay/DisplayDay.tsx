@@ -19,10 +19,6 @@ export default function DisplayDay() {
         12: "Dec",
     };
 
-    useEffect(()=>{
-        console.log(day)
-    },[day])
-
     return (
         <div className="w-full p-3 flex flex-col items-center justify-center">
             <h1 className="text-2xl font-bold">{dic[parseInt(day?.date?.split("-")[1])]}. {day?.date?.split('-')[0]}</h1>

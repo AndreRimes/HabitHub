@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { AppDispathc } from '@/redux/store';
 import { addTodo } from '@/redux/features/todo-slice';
 import { useAppSelector } from '@/redux/store';
+import { getHeader } from '@/util/util';
 
 interface TodoReq {
     title: string;
@@ -33,18 +34,13 @@ const CreateTodoModal = ({ showModal, setShowModal }: prop) => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-
         const data: TodoReq = {
             title,
             term: deadline === 'Deadline' ? `${date}-${time}` : '',
             user_id: user.id,
         };
 
-        const token = localStorage.getItem('token');
-        const headers = {
-            Authorization: `Bearer ${token}`
-        };
-
+        const headers = getHeader();
         try {
             const todo= await axios.post('http://localhost:8080/todo', data, {headers});
             dispatch(addTodo(todo.data.todo))
