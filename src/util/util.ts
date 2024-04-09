@@ -18,7 +18,6 @@ export function BinarySearch(searchDate: string, calendar: Day[]) {
     return -1
 }
 
-
 export function getFomatedToday() {
     const today = new Date();
     const year = today.getFullYear();
@@ -38,3 +37,29 @@ export function getHeader() {
     return headers
 
 }
+
+
+export function generateRandomString(length: number): string {
+    const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let randomString = '';
+
+    for (let i = 0; i < length; i++) {
+        const randomIndex = Math.floor(Math.random() * charset.length);
+        randomString += charset[randomIndex];
+    }
+
+    return randomString;
+}
+
+export function generateUniqueRandomString(length: number): string {
+    const usedStrings = new Set<string>();
+    let randomString = generateRandomString(length);
+
+    while (usedStrings.has(randomString)) {
+        randomString = generateRandomString(length);
+    }
+
+    usedStrings.add(randomString);
+    return randomString;
+}
+

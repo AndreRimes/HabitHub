@@ -12,7 +12,7 @@ export default function CalendarDay({ day }: { day: Day }) {
                     {day?.date?.split("-")[2] + "/" + day?.date?.split('-')[1]}
                 </h1>
                 <h2 className="text-md mr-1">{day.dayOfTheWeek}</h2>
-                <div className="w-2/3 h-[20%] flex flex-col justify-around">
+                <div className="w-2/3 py-4 h-[20%] flex flex-col justify-around">
                     {day.events && day.events.slice(0, 2).map((e: EventType, i: number) => (
                         <div className="flex flex-row items-center justify-between" key={i}>
                             <div className={`w-2 h-2 rounded-full bg-${i % 2 == 0 ? "secondary" : "primary"}`}></div>

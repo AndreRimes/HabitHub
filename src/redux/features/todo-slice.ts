@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Todo } from "@/types/models";
+import update from "immutability-helper"
 
 interface TodosState {
     value: Todo[];
@@ -26,8 +27,20 @@ export const todos = createSlice({
         addTodo: (state, action: PayloadAction<Todo>) => {
             state.value.push(action.payload)
         },
+        moveTodo: (state, action: PayloadAction<{ dragIndex: number, hoverIndex: number }>) => {
+            const { dragIndex, hoverIndex } = action.payload;
+
+            const updatedTodos = update(state.value, {
+                $splice: [
+                    [dragIndex, 1],
+                    [hoverIndex, 0, state.value[dragIndex]],
+                ],
+            });
+
+            state.value = updatedTodos;
+        }
     }
 });
 
-export const { setTodos, clearTodos, toggleTodo, addTodo } = todos.actions;
+export const { setTodos, clearTodos, toggleTodo, addTodo, moveTodo } = todos.actions;
 export default todos.reducer;

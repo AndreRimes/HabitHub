@@ -46,11 +46,9 @@ export default function HabitTracker() {
             if (isCheck) {
                 await axios.post("http://localhost:8080/complete-day", data, { headers });
                 dispatch(addHabit({ title, index }))
-                // TODO: add habit to calendar.
             } else {
                 await axios.delete(`http://localhost:8080/complete-day?habit_id=${habitId}&date=${date}`, { headers });
                 dispatch(removeHabit({ title, index }));
-                // TODO: remove habit from calendar.
             }
         } catch (e) {
             console.error(e);
@@ -68,7 +66,7 @@ export default function HabitTracker() {
                             <th></th>
                             {habitsReducer.value && habitsReducer.value.map((habit: Habit) => {
                                 return (
-                                    <th className="sticky top-0 z-10">{habit.title}</th>
+                                    <th className="sticky top-0 z-10 text-center">{habit.title}</th>
                                 )
                             })}
                             <th className="sticky top-0 z-10">

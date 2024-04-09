@@ -2,6 +2,7 @@ package main
 
 import (
 	"database/sql"
+	"fmt"
 	"habithub/api"
 	"habithub/util"
 	"log"
@@ -22,7 +23,9 @@ func main() {
     conn, err := sql.Open(config.DB_DRIVER, config.DB_SOURCE)
 
     if err != nil {
+        fmt.Println("ERROR AAAAAAAAAAAAAAAAAAAAAAAAAAA")
         log.Fatal("Error Connecting to the Database", err)
+        return
     }
 
     server := api.NewServer(conn)
@@ -31,6 +34,8 @@ func main() {
     err = server.Start("0.0.0.0:8080")
     
     if err != nil {
+        fmt.Println("ERROR AAAAAAAAAAAAAAAAAAAAAAAAAAA")
 		log.Fatal("Error Starting the server", err)
+        return
 	}
 }

@@ -80,7 +80,7 @@ const CreateEventModal = ({ showModal, setShowModal }: { showModal: boolean, set
     };
 
     useEffect(() => {
-        setIsBtnDisable(title.length < 3 || frequencyExtension === "" || beginTime === "" || endTime === "");
+        setIsBtnDisable(title.length < 2 || frequencyExtension === "" || beginTime === "" || endTime === "");
     }, [title, isPeriodic, frequency, frequencyExtension, endTime, beginTime,])
 
 
@@ -104,6 +104,7 @@ const CreateEventModal = ({ showModal, setShowModal }: { showModal: boolean, set
                 <PeriodicFrequencySelect
                     setTitle={setTitle}
                     setIsPeriodic={setIsPeriodic}
+                    title={title}
                 />
 
                 <div className="w-full h-1/2 flex flex-row justify-between">

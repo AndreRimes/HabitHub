@@ -1,11 +1,12 @@
 import React from 'react';
 
 interface props {
-    setTitle: React.Dispatch<React.SetStateAction<string>>
-    setIsPeriodic: React.Dispatch<React.SetStateAction<boolean>>
+  setTitle: React.Dispatch<React.SetStateAction<string>>;
+  setIsPeriodic: React.Dispatch<React.SetStateAction<boolean>>;
+  title: string;
 }
 
-const PeriodicFrequencySelect = ({ setTitle, setIsPeriodic }: props) => {
+const PeriodicFrequencySelect = ({title, setTitle, setIsPeriodic }: props) => {
     const handleChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
         const title = e.target.value;
         setTitle(title);
@@ -23,6 +24,7 @@ const PeriodicFrequencySelect = ({ setTitle, setIsPeriodic }: props) => {
                 placeholder="Title: "
                 type="text"
                 onChange={handleChangeTitle}
+                value={title}
             />
 
             <p className="absolute opacity-65 translate-x-[20vw] -translate-y-[10vh]">

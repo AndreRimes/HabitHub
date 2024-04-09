@@ -41,18 +41,19 @@ export default function DashBoardPage() {
     }
 
     return (
-        <>
-            <Calendar calendar={calendar.value} />
-            <div className="absolute translate-x-[63vw] translate-y-[89.6vh] flex flex-row">
-                <Image className="rounded-full hover:bg-slate-500 transition-colors p-1 rotate-180 "
-                    src={rightArrow} width={25} height={25} alt="left arrow" onClick={() => arrowClick(false)} />
-
-                <h2 className="">{months[parseInt(calendar?.value[10]?.date?.split('-')[1]) - 1] + "/" +
-                    calendar?.value[10]?.date?.split('-')[0]}</h2>
-
-                <Image className="rounded-xl hover:bg-slate-500 transition-colors p-1"
-                    src={rightArrow} width={25} height={25} alt="left Arrow" onClick={() => arrowClick(true)} />
-            </div>
-        </>
-    )
+      <>
+        <Calendar calendar={calendar.value} />
+        
+        <div className="join absolute  translate-x-[63vw] translate-y-[89.6vh] flex flex-row" style={{height:'10px'}}>
+          <button className="join-item btn" onClick={()=> arrowClick(false)}>«</button>
+          <button className="join-item btn">
+            {months[parseInt(calendar?.value[10]?.date?.split("-")[1]) - 1] +
+              "/" +
+              calendar?.value[10]?.date?.split("-")[0]}
+          </button>
+          <button onClick={()=> arrowClick(true)} 
+          className="join-item btn">»</button>
+        </div>
+      </>
+    );
 }
