@@ -27,7 +27,7 @@ const PeriodicFrequencySelect = ({title, setTitle, setIsPeriodic }: props) => {
                 value={title}
             />
 
-            <p className="absolute opacity-65 translate-x-[20vw] -translate-y-[10vh]">
+            <p className="absolute opacity-65 translate-x-[19vw] -translate-y-[10vh]">
                 *Periodic mode will make you event repeat <br /> from time to time.
             </p>
             <div className="form-control">

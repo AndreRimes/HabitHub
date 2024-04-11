@@ -53,8 +53,8 @@ export default function DayPage({ }) {
 
         let height;
 
-        height = (he - hb) * 110;
-        height += Math.abs(me - mb) * (2.1);
+        height = (he - hb) * 115.8;
+        height += Math.abs(me - mb) * (20);  
 
 
         console.log(height);
@@ -64,7 +64,6 @@ export default function DayPage({ }) {
     function calculateWidth(length: number) {
         return `${(100 / length) - 10}%`
     }
-
 
     return (
         <div className="w-3/4 h-full px-2 flex flex-col items-center justify-center">
