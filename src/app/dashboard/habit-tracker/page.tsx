@@ -94,7 +94,7 @@ export default function HabitTracker() {
                                                     />
                                                     :
                                                     <div className=" inline-block">
-                                                        ----
+                                                        --
                                                     </div>
                                                 }
                                             </td>

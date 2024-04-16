@@ -9,6 +9,8 @@ import {
   fowardCalendar,
 } from "@/redux/features/calendar-slice";
 import axios from "axios";
+import rightArrow from "../../../public/right-arrow.png"
+import Image from "next/image";
 
 export default function DashBoardPage() {
   const calendar = useAppSelector((state) => state.calendarReducer);
@@ -58,25 +60,16 @@ export default function DashBoardPage() {
   return (
     <>
       <Calendar calendar={calendar.value} />
-      <div className="join absolute translate-x-[63vw] translate-y-[89.2vh] flex flex-row">
-        <button
-          className="join-item btn btn-primary btn-sm"
-          onClick={() => arrowClick(false)}
-        >
-          «
-        </button>
-        <button className="join-item btn btn-sm">
-          {months[parseInt(calendar?.value[10]?.date?.split("-")[1]) - 1] +
-            "/" +
-            calendar?.value[10]?.date?.split("-")[0]}
-        </button>
-        <button
-          onClick={() => arrowClick(true)}
-          className="join-item btn btn-sm btn-primary"
-        >
-          »
-        </button>
+      <div className="absolute translate-x-[63vw] translate-y-[89.6vh] flex flex-row">
+        <Image className="rounded-full hover:bg-slate-500 transition-colors p-1 rotate-180 "
+          src={rightArrow} width={25} height={25} alt="left arrow" onClick={() => arrowClick(false)} />
+
+        <h2 className="">{months[parseInt(calendar?.value[10]?.date?.split('-')[1]) - 1] + "/" +
+          calendar?.value[10]?.date?.split('-')[0]}</h2>
+
+        <Image className="rounded-xl hover:bg-slate-500 transition-colors p-1"
+          src={rightArrow} width={25} height={25} alt="left Arrow" onClick={() => arrowClick(true)} />
       </div>
-    </>
+       </>
   );
 }

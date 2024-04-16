@@ -58,7 +58,7 @@ export default function DashBoardLayout({ children }: prop) {
         showModal={showModalTodo}
         setShowModal={setShowModalTodo}
       />
-      <div className="w-3/4 h-[90%] rounded-lg border p-2 flex flex-row">
+      <div className="w-3/4 h-[91%] rounded-lg border p-2 flex flex-row">
         <div className="h-full w-1/4 border-r flex flex-col items-center">
           <DisplayDay />
           <div className="w-full h-4/5 p-2 flex flex-col items-center justify-evenly">
